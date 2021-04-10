@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
             {
                 jump();
             }
-
         }
     }
 
@@ -39,7 +38,6 @@ public class PlayerController : MonoBehaviour
         anim.SetTrigger("Jump");
 
         GameManager.instance.IncrementScore();
-        Debug.Log("DeleteMe");
     }
 
     private bool SetGameOverTrue()
@@ -47,15 +45,18 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)   {
+    private void OnCollisionEnter2D(Collision2D collision)   
+    {
         if(collision.gameObject.tag == "Ground")
         {
-            grounded = true;}
+            grounded = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Obstacle"){
+        if(collision.gameObject.tag == "Obstacle")
+        {
             GameManager.instance.GameOver();
             Destroy(collision.gameObject);
             anim.Play("SantaDeath");
